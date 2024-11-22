@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# RAR
+*.rar
+
+#Parser 
+*.out
+parsetab.py
+
+# Ambiente virtual
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Arquivos de configuração do IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de log
+*.log
+
+# Outros arquivos que você pode querer ignorar
+*.egg-info/
+dist/
+build/
+*.egg

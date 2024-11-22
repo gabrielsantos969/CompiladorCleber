@@ -1,0 +1,50 @@
+<program> ::= <statement_list>
+
+<statement_list> ::= <statement>
+                   | <statement_list> <statement>
+
+<statement> ::= <declaration>
+              | <assignment>
+              | <print>
+              | <if_statement>
+
+<declaration> ::= "cleber" <type> <identifier> [ "=" <expression> ] ";"
+
+<assignment> ::= <identifier> "=" <expression> ";"
+
+<print> ::= "cleberPrint" "(" <expression> ")" ";"
+
+<if_statement> ::= "ifCleber" "(" <expression> ")" <statement>
+                 | "ifCleber" "(" <expression> ")" <statement> "elseCleber" <statement>
+
+<expression> ::= <value>
+               | <expression> "+" <expression>
+               | <expression> "-" <expression>
+               | <expression> "*" <expression>
+               | <expression> "/" <expression>
+               | <expression> <comparison_operator> <expression>
+
+<value> ::= <integer>
+          | <string>
+          | <boolean>
+          | <identifier>
+
+<integer> ::= [ "-" ] <digit>+
+
+<string> ::= '"' <char>* '"'
+
+<boolean> ::= "cleberVerdadeiro" | "cleberFalso"
+
+<type> ::= "cleberInt" | "cleberString" | "cleberBool"
+
+<identifier> ::= <letter> <letterOrDigit>*
+
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+<letter> ::= "a" | "b" | "c" | ... | "z" | "A" | "B" | "C" | ... | "Z"
+
+<letterOrDigit> ::= <letter> | <digit>
+
+<char> ::= <letter> | <digit> | " " | "-" | "+" | "*" | "/" | etc.
+
+<comparison_operator> ::= "==" | "!=" | "<" | ">" | "<=" | ">="

@@ -1,0 +1,5 @@
+ifCleber (1 != 2) {
+    cleberPrint(1+1);
+} elseCleber {
+    cleberPrint("Condição não satisfeita");
+}
