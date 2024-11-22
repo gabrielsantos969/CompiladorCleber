@@ -24,19 +24,20 @@ Veja os detalhes das versões por esse arquivo: [Versions.md](VERSIONS.md).
 
 O **Lexer** (ou Analisador Léxico) é a primeira etapa do compilador, responsável por converter o código-fonte em uma sequência de tokens. Ele divide o texto em componentes significativos (como palavras-chave, identificadores, operadores e literais) que serão utilizados nas fases seguintes da compilação.
 
-Para mais detalhes sobre o Lexer, acesse o arquivo [Lexer.md](./Documentação/Lexer.md).
+Para mais detalhes sobre o Lexer, acesse o arquivo [Lexer.md](./Documentação/LEXER.md
+).
 
 ### Parser
 
 O **Parser** (ou Analisador Sintático) é responsável por analisar a sequência de tokens gerada pelo Lexer. Ele verifica se a sequência de tokens segue a gramática da linguagem Cleber e constrói uma árvore sintática abstrata (AST), que será usada para a interpretação ou geração de código.
 
-Para mais detalhes sobre o Parser, acesse o arquivo [Parser.md](./Documentação/Parser.md).
+Para mais detalhes sobre o Parser, acesse o arquivo [Parser.md](./Documentação/PARSER.md).
 
 ### Executor
 
 O **Executor** é a parte do compilador que executa o código gerado, interpretando as instruções e manipulando as variáveis. Ele lida com a execução de operações aritméticas, atribuições, impressões e estruturas de controle (como condicionais), além de avaliar expressões.
 
-Para mais detalhes sobre o Executor, acesse o arquivo [Executor.md](./Documentação/Executor.md).
+Para mais detalhes sobre o Executor, acesse o arquivo [Executor.md](./Documentação/EXECUTOR.md).
 
 ## Objetivo
 
@@ -46,7 +47,7 @@ Nosso intuito é inspirar outros a explorar o fascinante mundo da criação de l
 
 ## Guia De Instalação
 
-Para saber como clonar e rodar nosso compilador, visualize o [Guia.md](./Documentação/Guia.md).
+Para saber como clonar e rodar nosso compilador, visualize o [Guia.md](./Documentação/GUIA.md).
 
 ## Contribuições
 
