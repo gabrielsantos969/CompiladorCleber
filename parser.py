@@ -17,7 +17,8 @@ def p_statement(p):
     '''statement : declaration
                  | assignment
                  | print_statement
-                 | if_statement'''
+                 | if_statement
+                 | for_statement'''
     p[0] = p[1]
 
 def p_if_statement(p):
@@ -30,10 +31,20 @@ def p_else_statement(p):
     if len(p) == 5:
         p[0] = ('block', p[3])
     else:
-        print("Else vazio")
         p[0] = None
 
+def p_for_statement(p):
+    '''for_statement : FORCLEBER LPAREN for_initialization COMMA expression COMMA for_update RPAREN block'''
+    p[0] = ('for', p[3], p[5], p[7], p[9])
 
+def p_for_initialization(p):
+    '''for_initialization : declaration
+                          | assignment'''
+    p[0] = p[1]
+
+def p_for_update(p):
+    '''for_update : assignment'''
+    p[0] = p[1]
 
 def p_empty(p):
     'empty :'
@@ -45,15 +56,27 @@ def p_block(p):
 
 def p_declaration(p):
     '''declaration : CLEBER type IDENTIFIER ASSIGN expression SEMICOLON
-                   | CLEBER type IDENTIFIER SEMICOLON'''
+                   | CLEBER type IDENTIFIER SEMICOLON
+                   | CLEBER type IDENTIFIER ASSIGN expression
+                   | CLEBER type IDENTIFIER'''
     if len(p) == 7:
+        p[0] = ('declaration', p[2], p[3], p[5])
+    elif len(p) == 4:
+        p[0] = ('declaration', p[2], p[3], None)
+    elif len(p) == 6:
         p[0] = ('declaration', p[2], p[3], p[5])
     else:
         p[0] = ('declaration', p[2], p[3], None)
 
+
 def p_assignment(p):
-    'assignment : IDENTIFIER ASSIGN expression SEMICOLON'
-    p[0] = ('assignment', p[1], p[3])
+    '''assignment : IDENTIFIER ASSIGN expression SEMICOLON
+                  | IDENTIFIER ASSIGN expression'''
+    if len(p) == 4:
+        p[0] = ('assignment', p[1], p[3])
+    else:
+        p[0] = ('assignment', p[1], p[3])
+
 
 def p_print_statement(p):
     'print_statement : CLEBERPRINT LPAREN expression RPAREN SEMICOLON'
@@ -72,12 +95,10 @@ def p_expression(p):
                   | expression LTE expression
                   | expression NOTEQUAL expression'''
     if len(p) == 2:
-        p[0] = p[1]  # Valor simples
+        p[0] = p[1]
     else:
-        # Operações aritméticas
         if p[2] in ['+', '-', '*', '/']:
             p[0] = ('operation', p[2], p[1], p[3])
-        # Operações de comparação
         elif p[2] == '==':
             p[0] = ('comparison', 'equals', p[1], p[3])
         elif p[2] == '>':
@@ -90,8 +111,6 @@ def p_expression(p):
             p[0] = ('comparison', 'lte', p[1], p[3])
         elif p[2] == '!=':
             p[0] = ('comparison', 'notequal', p[1], p[3])
-
-
 
 def p_value(p):
     '''value : INTEGER
@@ -111,6 +130,5 @@ def p_error(p):
         print(f"Erro de sintaxe em '{p.value}' (Token: {p.type}) na linha {p.lineno}")
     else:
         print("Erro de sintaxe no final da entrada")
-
 
 parser = yacc.yacc()

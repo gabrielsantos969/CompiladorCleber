@@ -11,6 +11,7 @@ tokens = (
     'IDENTIFIER',
     'ASSIGN',
     'SEMICOLON',
+    'COMMA',  # Correção aqui
     'LPAREN',
     'RPAREN',
     'LBRACE',
@@ -27,16 +28,16 @@ tokens = (
     'LESS',
     'GTE',
     'LTE',
-    'NOTEQUAL'
+    'NOTEQUAL',
+    'FORCLEBER'
 )
 
-
 def t_IFCLEBER(t):
-    r'\bifCleber\b'
+    r'\bcleberIf\b'
     return t
 
 def t_ELSECLEBER(t):
-    r'\belseCleber\b'
+    r'\bcleberElse\b'
     return t
 
 def t_CLEBER(t):
@@ -69,13 +70,17 @@ def t_CLEBERPRINT(t):
     r'\bcleberPrint\b'
     return t
 
+def t_FORCLEBER(t):
+    r'\bcleberFor\b'
+    return t
+
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     return t
 
-
 t_ASSIGN = r'='
 t_SEMICOLON = r';'
+t_COMMA = r','  # Correção aqui
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_INTEGER = r'-?\d+'
@@ -109,6 +114,3 @@ def test_lexer(data):
         if not tok:
             break
         print(tok)
-
-
-

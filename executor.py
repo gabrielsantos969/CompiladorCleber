@@ -29,6 +29,13 @@ def execute_statement(statement):
             execute_block(if_block)
         elif else_block:
             execute_block(else_block)
+    elif statement[0] == 'for':  
+        _, initialization, condition, update, block = statement
+        execute_statement(initialization)  
+        while evaluate_expression(condition):  
+            execute_block(block)  
+            execute_statement(update) 
+
 
 def execute_block(block):
     for statement in block[1]:

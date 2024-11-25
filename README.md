@@ -8,11 +8,12 @@ Este projeto, desenvolvido para fins acadêmicos, é um compilador para a lingua
 
 1. [Histórico de Versões](#histórico-de-versões)
 2. [Documentação](#documentação)
-3. [Guia De Instalação](#guia-de-instalação)
-4. [Objetivo](#objetivo) 
-5. [Contribuições](#contribuições)
-6. [Licença](#licença)
-7. [Contato](#contato)
+3. [Guia Da Linguagem](#guia-da-linguagem)
+4. [Guia De Instalação](#guia-de-instalação)
+5. [Objetivo](#objetivo) 
+6. [Contribuições](#contribuições)
+7. [Licença](#licença)
+8. [Contato](#contato)
 
 ## Histórico de Versões
 
@@ -38,6 +39,11 @@ Para mais detalhes sobre o Parser, acesse o arquivo [Parser.md](./Documentação
 O **Executor** é a parte do compilador que executa o código gerado, interpretando as instruções e manipulando as variáveis. Ele lida com a execução de operações aritméticas, atribuições, impressões e estruturas de controle (como condicionais), além de avaliar expressões.
 
 Para mais detalhes sobre o Executor, acesse o arquivo [Executor.md](./Documentação/EXECUTOR.md).
+
+## Guia Da Linguagem
+
+Nessa parte você poderá visualizar como utilizar a linguagem e todas as suas implementações para começar a utilizar.
+Para visualizar como utilizar a linguagem, acesse o arquivo [Guia_de_Linguagem.md](./Documentação/GUIA_DE_LINGUAGEM.md).
 
 ## Objetivo
 
