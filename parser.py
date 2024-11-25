@@ -1,6 +1,8 @@
 import ply.yacc as yacc
 from lexer import tokens
 
+symbol_table = {}
+
 def p_program(p):
     'program : statement_list'
     p[0] = ('program', p[1])
@@ -29,7 +31,7 @@ def p_else_statement(p):
     '''else_statement : ELSECLEBER LBRACE statement_list RBRACE
                       | empty'''
     if len(p) == 5:
-        p[0] = ('block', p[3])
+        p[0] = ('else', ('block', p[3]))
     else:
         p[0] = None
 
@@ -61,22 +63,32 @@ def p_declaration(p):
                    | CLEBER type IDENTIFIER'''
     if len(p) == 7:
         p[0] = ('declaration', p[2], p[3], p[5])
+        symbol_table[p[3]] = {'type': p[2], 'value': p[5]}
     elif len(p) == 4:
         p[0] = ('declaration', p[2], p[3], None)
+        symbol_table[p[3]] = {'type': p[2], 'value': None}
     elif len(p) == 6:
         p[0] = ('declaration', p[2], p[3], p[5])
+        symbol_table[p[3]] = {'type': p[2], 'value': p[5]}
     else:
         p[0] = ('declaration', p[2], p[3], None)
-
+        symbol_table[p[3]] = {'type': p[2], 'value': None}
 
 def p_assignment(p):
     '''assignment : IDENTIFIER ASSIGN expression SEMICOLON
                   | IDENTIFIER ASSIGN expression'''
     if len(p) == 4:
         p[0] = ('assignment', p[1], p[3])
+        if p[1] in symbol_table:
+            symbol_table[p[1]]['value'] = p[3]
+        else:
+            print(f"Erro: Variável '{p[1]}' não declarada.")
     else:
         p[0] = ('assignment', p[1], p[3])
-
+        if p[1] in symbol_table:
+            symbol_table[p[1]]['value'] = p[3]
+        else:
+            print(f"Erro: Variável '{p[1]}' não declarada.")
 
 def p_print_statement(p):
     'print_statement : CLEBERPRINT LPAREN expression RPAREN SEMICOLON'
@@ -132,3 +144,10 @@ def p_error(p):
         print("Erro de sintaxe no final da entrada")
 
 parser = yacc.yacc()
+
+def write_symbol_table_to_file(file_path):
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.write("Tabela de Símbolos:\n")
+        for symbol, attributes in symbol_table.items():
+            file.write(f"{symbol}: {attributes}\n")
+

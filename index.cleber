@@ -2,9 +2,10 @@ cleber cleberString nome = "Gabriel";
 cleber cleberInt idade = 12;
 cleber cleberBool deMaior = "cleberFalso";
 cleber cleberString nmPai;
+cleber cleberString nmMae;
 
 nmPai = "João";
-
+nmMae = "Marcela";
 cleberPrint(nmPai);
 
 cleberIf(1 == 2){

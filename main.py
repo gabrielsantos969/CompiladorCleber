@@ -12,3 +12,5 @@ lexer.test_lexer(data)
 
 ast = parser.parser.parse(data)
 execute_program(ast)
+
+parser.write_symbol_table_to_file('symbol_table.txt')

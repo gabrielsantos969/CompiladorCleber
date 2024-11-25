@@ -1,0 +1,7 @@
+Tabela de Símbolos:
+nome: {'type': 'cleberString', 'value': 'Gabriel'}
+idade: {'type': 'cleberInt', 'value': '12'}
+deMaior: {'type': 'cleberBool', 'value': 'cleberFalso'}
+nmPai: {'type': 'cleberString', 'value': 'João'}
+nmMae: {'type': 'cleberString', 'value': 'Marcela'}
+i: {'type': 'cleberInt', 'value': ('operation', '+', 'i', '1')}
