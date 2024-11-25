@@ -1,4 +1,4 @@
-![Badge em Versão](http://img.shields.io/static/v1?label=Versão&message=1.2.0&color=GREEN&style=for-the-badge)
+![Badge em Versão](http://img.shields.io/static/v1?label=Versão&message=1.3.0&color=GREEN&style=for-the-badge)
 
 # Compilador para Linguagem Cleber
 
