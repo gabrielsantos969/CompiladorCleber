@@ -26,3 +26,7 @@
     * Ajustado parser para aceitar declarações sem `;` e adicionado a expressão para o cleberFor.
     * Adicionado Documentação para as Declarações de como usar a linguagem.
     * Adicionado arquivo .cleber para testar todas as implementações.
+
+**Vesão 1.3.1**
+* **Mundanças:**
+    * Adicionado lista de simbolos.
