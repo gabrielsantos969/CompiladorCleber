@@ -11,7 +11,7 @@ tokens = (
     'IDENTIFIER',
     'ASSIGN',
     'SEMICOLON',
-    'COMMA',  # Correção aqui
+    'COMMA',
     'LPAREN',
     'RPAREN',
     'LBRACE',
@@ -29,8 +29,14 @@ tokens = (
     'GTE',
     'LTE',
     'NOTEQUAL',
-    'FORCLEBER'
+    'FORCLEBER',
+     'CLEBERBLOCO',  # Novo token para blocos
+    'DOT'  # Novo token para acesso a membros de blocos
 )
+
+def t_DOT(t):
+    r'\.'
+    return t
 
 def t_IFCLEBER(t):
     r'\bcleberIf\b'
@@ -43,7 +49,9 @@ def t_ELSECLEBER(t):
 def t_CLEBER(t):
     r'\bcleber\b'
     return t
-
+def t_CLEBERBLOCO(t):
+    r'\bcleberBloco\b'
+    return t
 def t_CLEBERINT(t):
     r'\bcleberInt\b'
     return t
@@ -112,5 +120,5 @@ def test_lexer(data):
     while True:
         tok = lexer.token()
         if not tok:
-            break
-        print(tok)
+           break
+    else: print('Erro no lexer!')   

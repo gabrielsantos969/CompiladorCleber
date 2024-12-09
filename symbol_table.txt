@@ -1,7 +1,5 @@
-Tabela de Símbolos:
-nome: {'type': 'cleberString', 'value': 'Gabriel'}
-idade: {'type': 'cleberInt', 'value': '12'}
-deMaior: {'type': 'cleberBool', 'value': 'cleberFalso'}
-nmPai: {'type': 'cleberString', 'value': 'João'}
-nmMae: {'type': 'cleberString', 'value': 'Marcela'}
-i: {'type': 'cleberInt', 'value': ('operation', '+', 'i', '1')}
+xIn: cleberInt = 2
+x: cleberInt = xIn
+zResult: cleberInt = ('operation', '*', 'x', 'x')
+zOut: cleberInt = ('operation', '+', 'zResult', '10')
+teste: cleberBloco = ('block', [('declaration', 'cleberInt', 'x', 'xIn'), ('declaration', 'cleberInt', 'zResult', ('operation', '*', 'x', 'x')), ('declaration', 'cleberInt', 'zOut', ('operation', '+', 'zResult', '10'))])
