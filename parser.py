@@ -1,5 +1,5 @@
-import ply.yacc as yacc
 from lexer import tokens
+import ply.yacc as yacc  # Adicionando a importação do módulo yacc
 
 symbol_table = {}
 
@@ -60,7 +60,8 @@ def p_declaration(p):
     '''declaration : CLEBER type IDENTIFIER ASSIGN expression SEMICOLON
                    | CLEBER type IDENTIFIER SEMICOLON
                    | CLEBER type IDENTIFIER ASSIGN expression
-                   | CLEBER type IDENTIFIER'''
+                   | CLEBER type IDENTIFIER
+                   | CLEBER CLEBERBLOCO IDENTIFIER ASSIGN block SEMICOLON'''
     if len(p) == 7:
         p[0] = ('declaration', p[2], p[3], p[5])
         symbol_table[p[3]] = {'type': p[2], 'value': p[5]}
@@ -76,19 +77,15 @@ def p_declaration(p):
 
 def p_assignment(p):
     '''assignment : IDENTIFIER ASSIGN expression SEMICOLON
-                  | IDENTIFIER ASSIGN expression'''
-    if len(p) == 4:
+                  | IDENTIFIER DOT IDENTIFIER ASSIGN expression SEMICOLON'''
+    if len(p) == 5:
         p[0] = ('assignment', p[1], p[3])
-        if p[1] in symbol_table:
-            symbol_table[p[1]]['value'] = p[3]
-        else:
-            print(f"Erro: Variável '{p[1]}' não declarada.")
     else:
-        p[0] = ('assignment', p[1], p[3])
-        if p[1] in symbol_table:
-            symbol_table[p[1]]['value'] = p[3]
-        else:
-            print(f"Erro: Variável '{p[1]}' não declarada.")
+        p[0] = ('assignment', f"{p[1]}.{p[3]}", p[5])
+    if p[1] in symbol_table:
+        symbol_table[p[1]]['value'] = p[3]
+    else:
+        print(f"Erro: Variável '{p[1]}' não declarada.")
 
 def p_print_statement(p):
     'print_statement : CLEBERPRINT LPAREN expression RPAREN SEMICOLON'
@@ -105,9 +102,12 @@ def p_expression(p):
                   | expression LESS expression
                   | expression GTE expression
                   | expression LTE expression
-                  | expression NOTEQUAL expression'''
+                  | expression NOTEQUAL expression
+                  | IDENTIFIER DOT IDENTIFIER'''
     if len(p) == 2:
         p[0] = p[1]
+    elif len(p) == 4 and p[2] == '.':
+        p[0] = ('member_access', p[1], p[3])
     else:
         if p[2] in ['+', '-', '*', '/']:
             p[0] = ('operation', p[2], p[1], p[3])
@@ -147,7 +147,5 @@ parser = yacc.yacc()
 
 def write_symbol_table_to_file(file_path):
     with open(file_path, 'w', encoding='utf-8') as file:
-        file.write("Tabela de Símbolos:\n")
-        for symbol, attributes in symbol_table.items():
-            file.write(f"{symbol}: {attributes}\n")
-
+        for identifier, info in symbol_table.items():
+            file.write(f"{identifier}: {info['type']} = {info['value']}\n")
